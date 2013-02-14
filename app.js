@@ -26,21 +26,9 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-var dbUrl = "library";
-var collections = ["books"];
+app.get('/books', routes.books.all);
+app.get('/books/:id', routes.books.one);
 
-var db = require("mongojs").connect(dbUrl, collections);
-
-app.get('/', routes.index);
-app.get('/books', function(req, res) {
-  db.books.find({}, function(err, books) {
-    if(err) return;
-    var response = {
-      books: books
-    };
-    res.json(response);
-  });
-});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
