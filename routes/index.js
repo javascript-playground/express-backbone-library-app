@@ -2,6 +2,10 @@ var db = require("../database.js");
 
 exports.books = {};
 
+exports.index = function(req, res) {
+  res.render("index");
+};
+
 /*
  * GET all books
  */
