@@ -26,6 +26,9 @@ exports.books.one = function(req, res) {
   });
 };
 
+/*
+ * POST a new book
+ */
 exports.books.create = function(req, res) {
   res.json(req.body);
   db.books.save(req.body);
