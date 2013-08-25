@@ -26,6 +26,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+app.get('/', routes.index);
 app.get('/books', routes.books.all);
 app.get('/books/:id', routes.books.one);
 app.post('/books', routes.books.create);
