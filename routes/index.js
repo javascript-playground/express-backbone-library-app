@@ -5,6 +5,13 @@ exports.index = function(req, res) {
 };
 exports.books = {};
 
+exports.index = function(req, res) {
+  res.render("index");
+};
+
+/*
+ * GET all books
+ */
 exports.books.all = function(req, res) {
   db.books.find(function(err, books) {
     if(err) return;
@@ -12,16 +19,20 @@ exports.books.all = function(req, res) {
   });
 };
 
+/*
+ * GET one book
+ */
 exports.books.one = function(req, res) {
-  var bookId = db.ObjectId(req.params.id);
-  db.books.findOne({ "_id" : bookId }, function(err, book) {
+  db.books.findOne({ "_id" : db.ObjectId(req.params.id) }, function(err, book) {
     if(err) return;
     res.json(book);
   });
 };
 
+/*
+ * POST a new book
+ */
 exports.books.create = function(req, res) {
   res.json(req.body);
   db.books.save(req.body);
 };
-
