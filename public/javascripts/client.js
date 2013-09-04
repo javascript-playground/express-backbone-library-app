@@ -20,13 +20,29 @@ var BookView = Backbone.View.extend({
 });
 
 var BookCollectionView = Backbone.View.extend({
+  initialize: function() {
+    this.listenTo(this.collection, "add remove reset", this.render);
+  },
   tagName: "ul",
   className: "books",
   render: function() {
+    this.$el.html("");
     this.collection.each(function(book) {
       var bookView = new BookView({ model: book });
       this.$el.append(bookView.render().el);
     }, this);
     return this;
+  }
+});
+
+var AppRouter = Backbone.Router.extend({
+  routes: {
+    "": "index"
+  },
+  index: function() {
+    var collection = new BookCollection();
+    collection.fetch();
+    var view = new BookCollectionView({ collection: collection });
+    $(".app").html(view.render().el);
   }
 });
