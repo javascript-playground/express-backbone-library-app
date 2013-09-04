@@ -21,7 +21,7 @@ var BookView = Backbone.View.extend({
 
 var BookCollectionView = Backbone.View.extend({
   initialize: function() {
-    this.listenTo(this.collection, "add remove reset", this.render);
+    this.listenTo(this.collection, "reset", this.render);
   },
   tagName: "ul",
   className: "books",
@@ -41,7 +41,7 @@ var AppRouter = Backbone.Router.extend({
   },
   index: function() {
     var collection = new BookCollection();
-    collection.fetch();
+    collection.fetch({ reset: true });
     var view = new BookCollectionView({ collection: collection });
     $(".app").html(view.render().el);
   }
