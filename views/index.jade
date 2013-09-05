@@ -3,7 +3,15 @@ extends layout
 block content
   h1 Backbone App
 
+  div#initialContent
+    = appData
+
   div.app
 
   script(id="booktemplate", type="text/x-handlebars")
-    {{name}} by {{author}}
+    <a href="#" class="name">{{name}}</a> by {{author}}
+
+  script(id="detailedbooktemplate", type="text/x-handlebars")
+    <h2>{{name}}</h2>
+    <p>Written by {{author}}</p>
+    <p>Kept in {{location}}</p>

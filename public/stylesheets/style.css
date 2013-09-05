@@ -6,3 +6,5 @@ body {
 a {
   color: #00B7FF;
 }
+
+#initialContent { display: none; }
